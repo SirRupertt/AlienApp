@@ -108,7 +108,7 @@ export default function WeylandYutaniRecruitmentPortal() {
               ["Exploration Bonus", "Additional compensation for frontier-zone assignments."],
               ["Safety Protocols", "Automated monitoring and emergency procedure compliance."],
               ["Off-World Travel", "Experience distant systems beyond ordinary human reach."],
-            ].map(([title, text]) => (
+            ].map(([title, text]: [string, string]) => (
               <div key={title} className="border border-green-300/20 bg-black/40 p-6 shadow-[0_0_25px_rgba(34,197,94,0.08)] transition hover:border-green-300/70 hover:bg-green-300/5">
                 <h3 className="text-lg font-bold uppercase tracking-[0.12em] text-green-200">{title}</h3>
                 <p className="mt-4 text-sm leading-6 text-green-100/60">{text}</p>
@@ -179,7 +179,7 @@ export default function WeylandYutaniRecruitmentPortal() {
                 ["Objective", "Resource Transport"],
                 ["Crew Status", "Replaceable / Rotational"],
                 ["Risk Level", "LOW"],
-              ].map(([label, value]) => (
+              ].map(([label, value]: [string, string]) => (
                 <div key={label} className="flex justify-between border border-green-300/20 bg-black/50 p-5">
                   <span className="text-green-500/80">{label}</span>
                   <span className={label === "Risk Level" ? "text-green-200 hover:text-red-400" : "text-green-100"}>{value}</span>

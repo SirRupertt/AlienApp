@@ -86,7 +86,7 @@ export default function WeylandYutaniRecruitmentPortal() {
             Expand Human Frontiers
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-green-100/75 md:text-lg">
-            Join the next deep-space commercial expedition. Secure your future, serve human progress, and help Weyland-Yutani build better worlds.
+            Join the next deep-space commercial expedition. Secure your future, serve human progress, and help Weyland-Yutani maintain its position as the galaxy's leading interstellar enterprise.
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">

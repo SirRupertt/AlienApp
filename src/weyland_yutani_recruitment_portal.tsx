@@ -1,6 +1,11 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
-const roles = [
+type Role = {
+  title: string;
+  description: string;
+};
+
+const roles: Role[] = [
   {
     title: "Engineer",
     description: "Maintain ship systems, repair critical infrastructure, and ensure mission continuity.",
@@ -27,12 +32,27 @@ const roles = [
   },
 ];
 
+const benefits: [string, string][] = [
+  ["Competitive Pay", "Hazard-adjusted earnings for qualified crew members."],
+  ["Exploration Bonus", "Additional compensation for frontier-zone assignments."],
+  ["Safety Protocols", "Automated monitoring and emergency procedure compliance."],
+  ["Off-World Travel", "Experience distant systems beyond ordinary human reach."],
+];
+
+const missionStats: [string, string][] = [
+  ["Destination", "Outer Rim"],
+  ["Duration", "18 Months Estimated"],
+  ["Objective", "Resource Transport"],
+  ["Crew Status", "Replaceable / Rotational"],
+  ["Risk Level", "LOW"],
+];
+
 export default function WeylandYutaniRecruitmentPortal() {
-  const [selectedRole, setSelectedRole] = useState(roles[0]);
+  const [selectedRole, setSelectedRole] = useState<Role>(roles[0]);
   const [applicationStarted, setApplicationStarted] = useState(false);
 
   return (
-    <main className="min-h-screen bg-[#050808] text-green-100 font-mono selection:bg-green-300 selection:text-black overflow-hidden">
+    <main className="min-h-screen overflow-hidden bg-[#050808] font-mono text-green-100 selection:bg-green-300 selection:text-black">
       <div className="pointer-events-none fixed inset-0 z-50 bg-[linear-gradient(rgba(255,255,255,0.035)_1px,transparent_1px)] bg-[length:100%_4px] opacity-20" />
       <div className="pointer-events-none fixed inset-0 z-40 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.4)_65%,rgba(0,0,0,0.85)_100%)]" />
 
@@ -72,7 +92,7 @@ export default function WeylandYutaniRecruitmentPortal() {
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
             <a
               href="#apply"
-              className="group border border-green-300 bg-green-300 px-8 py-4 text-sm font-bold uppercase tracking-[0.3em] text-black shadow-[0_0_30px_rgba(134,239,172,0.35)] transition hover:bg-transparent hover:text-green-200"
+              className="border border-green-300 bg-green-300 px-8 py-4 text-sm font-bold uppercase tracking-[0.3em] text-black shadow-[0_0_30px_rgba(134,239,172,0.35)] transition hover:bg-transparent hover:text-green-200"
             >
               Apply Now
             </a>
@@ -103,12 +123,7 @@ export default function WeylandYutaniRecruitmentPortal() {
           </div>
 
           <div className="grid gap-4 md:grid-cols-4">
-            {[
-              ["Competitive Pay", "Hazard-adjusted earnings for qualified crew members."],
-              ["Exploration Bonus", "Additional compensation for frontier-zone assignments."],
-              ["Safety Protocols", "Automated monitoring and emergency procedure compliance."],
-              ["Off-World Travel", "Experience distant systems beyond ordinary human reach."],
-            ].map(([title, text]: [string, string]) => (
+            {benefits.map(([title, text]) => (
               <div key={title} className="border border-green-300/20 bg-black/40 p-6 shadow-[0_0_25px_rgba(34,197,94,0.08)] transition hover:border-green-300/70 hover:bg-green-300/5">
                 <h3 className="text-lg font-bold uppercase tracking-[0.12em] text-green-200">{title}</h3>
                 <p className="mt-4 text-sm leading-6 text-green-100/60">{text}</p>
@@ -173,13 +188,7 @@ export default function WeylandYutaniRecruitmentPortal() {
             </div>
 
             <div className="grid gap-3 text-sm uppercase tracking-[0.18em] text-green-100/75">
-              {[
-                ["Destination", "Outer Rim"],
-                ["Duration", "18 Months Estimated"],
-                ["Objective", "Resource Transport"],
-                ["Crew Status", "Replaceable / Rotational"],
-                ["Risk Level", "LOW"],
-              ].map(([label, value]: [string, string]) => (
+              {missionStats.map(([label, value]) => (
                 <div key={label} className="flex justify-between border border-green-300/20 bg-black/50 p-5">
                   <span className="text-green-500/80">{label}</span>
                   <span className={label === "Risk Level" ? "text-green-200 hover:text-red-400" : "text-green-100"}>{value}</span>

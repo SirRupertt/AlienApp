@@ -5,10 +5,18 @@ type Role = {
   description: string;
 };
 
+type MissionRecord = {
+  name: string;
+  status: string;
+  crewReturn: string;
+  publicSummary: string;
+  classifiedNote: string;
+};
+
 const roles: Role[] = [
   {
     title: "Engineer",
-    description: "Maintain ship systems, repair critical infrastructure, and ensure mission continuity.",
+    description: "Maintain ship systems, repair critical infrastructure, and ensure mechanical success.",
   },
   {
     title: "Navigator",
@@ -47,6 +55,33 @@ const missionStats: [string, string][] = [
   ["Risk Level", "LOW"],
 ];
 
+const missionArchive: MissionRecord[] = [
+  {
+    name: "Balenos Mineral Survey",
+    status: "Commercial Success",
+    crewReturn: "Partial",
+    publicSummary:
+      "A profitable resource-mapping operation that expanded Weyland-Yutani extraction rights across multiple unexplored mineral belts.",
+    classifiedNote: "Medical logs sealed. Survivor interviews discontinued after psychological review.",
+  },
+  {
+    name: "Kitava Signal Response",
+    status: "Scientific Breakthrough",
+    crewReturn: "Pending",
+    publicSummary:
+      "A deep-space signal investigation designed to transform uncertainty into actionable research, corporate knowledge, and opportunity for future crews.",
+    classifiedNote: "Transmission source remains active. Recovery teams advised to avoid independent interpretation of distress language.",
+  },
+  {
+    name: "Outer Rim Freight Relay",
+    status: "Operationally Resolved",
+    crewReturn: "Pending",
+    publicSummary:
+      "A routine freight route optimization project that demonstrated the resilience of automated shipboard command systems under unexpected conditions.",
+    classifiedNote: "Autopilot completed company objective after crew channels went silent.",
+  },
+];
+
 export default function WeylandYutaniRecruitmentPortal() {
   const [selectedRole, setSelectedRole] = useState<Role>(roles[0]);
   const [applicationStarted, setApplicationStarted] = useState(false);
@@ -69,10 +104,11 @@ export default function WeylandYutaniRecruitmentPortal() {
           </div>
 
           <div className="hidden gap-8 text-xs uppercase tracking-[0.25em] text-green-300/80 md:flex">
+            <a href="#about" className="hover:text-green-100">About</a>
+            <a href="#archive" className="hover:text-green-100">Archive</a>
             <a href="#missions" className="hover:text-green-100">Missions</a>
             <a href="#roles" className="hover:text-green-100">Careers</a>
             <a href="#apply" className="hover:text-green-100">Apply</a>
-            <a href="#footer" className="hover:text-green-100">Login</a>
           </div>
         </nav>
       </header>
@@ -86,7 +122,7 @@ export default function WeylandYutaniRecruitmentPortal() {
             Expand Human Frontiers
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-base leading-8 text-green-100/75 md:text-lg">
-            Join the next deep-space commercial expedition. Secure your future, serve human progress, and help Weyland-Yutani maintain its position as the galaxy's leading interstellar enterprise.
+            Join the next deep-space commercial expedition. Secure your future, serve human progress, and help Weyland-Yutani maintain its position as the galaxy&apos;s leading interstellar enterprise.
           </p>
 
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -110,7 +146,28 @@ export default function WeylandYutaniRecruitmentPortal() {
         </div>
       </section>
 
-      <section className="relative z-10 border-y border-green-400/20 bg-green-950/10 px-6 py-20">
+      <section id="about" className="relative z-10 border-y border-green-400/20 bg-black/50 px-6 py-20">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+          <div>
+            <p className="text-xs uppercase tracking-[0.35em] text-green-400/70">About Us</p>
+            <h2 className="mt-3 text-3xl font-bold uppercase tracking-[0.12em] text-green-100">The Company Beyond Earth</h2>
+          </div>
+
+          <div className="space-y-6 text-sm leading-7 text-green-100/65 md:text-base md:leading-8">
+            <p>
+              For generations, Weyland-Yutani has transformed the unknown into infrastructure. Our shipping lanes, terraforming initiatives, orbital refineries, and research divisions allow humanity to move farther, work longer, and discover more than any single government could achieve alone.
+            </p>
+            <p>
+              We believe uncertainty is not an obstacle. It is a resource. Every uncharted moon, intercepted signal, atmospheric anomaly, and undocumented life-signature contains value waiting to be organized, studied, and placed in service of human advancement.
+            </p>
+            <p>
+              Our crew members are the first hands extended into darkness. Their discipline allows the company to convert risk into knowledge, knowledge into ownership, and ownership into a safer, more prosperous future for all participating worlds.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className="relative z-10 border-b border-green-400/20 bg-green-950/10 px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <div className="mb-12 flex flex-col justify-between gap-4 md:flex-row md:items-end">
             <div>
@@ -118,7 +175,7 @@ export default function WeylandYutaniRecruitmentPortal() {
               <h2 className="mt-3 text-3xl font-bold uppercase tracking-[0.12em] text-green-100">Why Join Weyland-Yutani?</h2>
             </div>
             <p className="max-w-xl text-sm leading-7 text-green-100/60">
-              Every mission is backed by industry-leading support systems, advanced corporate technology, and carefully optimized crew-management protocols.
+              Every mission is backed by top of the line support systems, including life-support+, advanced corporate technology, and carefully optimized crew-management protocols.
             </p>
           </div>
 
@@ -132,15 +189,55 @@ export default function WeylandYutaniRecruitmentPortal() {
           </div>
 
           <p className="mt-8 text-[10px] uppercase tracking-[0.25em] text-green-500/50">
-            *Terms subject to mission conditions. Crew compliance required. Contract revision possible during active deployment.
+            *Terms subject to mission conditions. Crew compliance required. Contract rescindment possible during active deployment.
           </p>
           <p className="mt-2 text-[9px] uppercase tracking-[0.35em] text-green-950 transition hover:text-red-400">
-            Priority: specimen acquisition // Crew expendable
+            !Priority: specimen acquisition // Crew expendable
           </p>
         </div>
       </section>
 
-      <section id="roles" className="relative z-10 px-6 py-20">
+      <section id="archive" className="relative z-10 px-6 py-20">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 max-w-3xl">
+            <p className="text-xs uppercase tracking-[0.35em] text-green-400/70">Previous Mission Records</p>
+            <h2 className="mt-3 text-3xl font-bold uppercase tracking-[0.12em] text-green-100">A Proven Record of Discovery</h2>
+            <p className="mt-5 text-sm leading-7 text-green-100/60 md:text-base md:leading-8">
+              Weyland-Yutani missions are evaluated by long-term corporate value, scientific acquisition, and operational continuity. Public summaries below have been approved for potential candidate consumption.
+              <p className="mt-2 text-[10px] uppercase tracking-[0.35em] text-green-950 transition hover:text-red-400">
+                Restricted details are available only to authorized personnel.
+              </p>
+            </p>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-3">
+            {missionArchive.map((mission) => (
+              <article key={mission.name} className="border border-green-300/25 bg-black/50 p-6 shadow-[0_0_35px_rgba(34,197,94,0.08)] transition hover:border-green-300/70 hover:bg-green-300/5">
+                <p className="text-[10px] uppercase tracking-[0.3em] text-green-500/70">Archived Mission</p>
+                <h3 className="mt-3 text-xl font-bold uppercase tracking-[0.12em] text-green-100">{mission.name}</h3>
+
+                <div className="mt-5 space-y-2 border-y border-green-300/15 py-4 text-xs uppercase tracking-[0.18em] text-green-100/70">
+                  <p className="flex justify-between gap-4">
+                    <span className="text-green-500/80">Status</span>
+                    <span>{mission.status}</span>
+                  </p>
+                  <p className="flex justify-between gap-4">
+                    <span className="text-green-500/80">Crew Return</span>
+                    <span className="hover:text-red-400">{mission.crewReturn}</span>
+                  </p>
+                </div>
+
+                <p className="mt-5 text-sm leading-7 text-green-100/60">{mission.publicSummary}</p>
+                <p className="mt-5 border border-red-400/20 bg-red-950/10 p-4 text-xs leading-6 text-red-300/70 blur-[1.5px] transition hover:blur-0">
+                  RESTRICTED: {mission.classifiedNote}
+                </p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="roles" className="relative z-10 border-y border-green-400/20 bg-black/50 px-6 py-20">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1fr_0.8fr]">
           <div>
             <p className="text-xs uppercase tracking-[0.35em] text-green-400/70">Open Positions</p>
@@ -176,7 +273,7 @@ export default function WeylandYutaniRecruitmentPortal() {
         </div>
       </section>
 
-      <section id="missions" className="relative z-10 border-y border-green-400/20 bg-black/50 px-6 py-20">
+      <section id="missions" className="relative z-10 border-b border-green-400/20 bg-green-950/10 px-6 py-20">
         <div className="mx-auto max-w-6xl">
           <p className="text-xs uppercase tracking-[0.35em] text-green-400/70">Current Mission</p>
           <div className="mt-6 grid gap-6 lg:grid-cols-[0.9fr_1.1fr]">
@@ -184,6 +281,9 @@ export default function WeylandYutaniRecruitmentPortal() {
               <h2 className="text-3xl font-bold uppercase tracking-[0.12em] text-green-100">Nostromo Freight Expedition</h2>
               <p className="mt-5 leading-7 text-green-100/65">
                 A routine commercial transport assignment supporting resource movement across the outer rim. Crew members will maintain vessel systems, monitor cargo, and respond to navigational updates as directed by central command.
+              </p>
+              <p className="mt-5 leading-7 text-green-100/60">
+                Candidates should understand that frontier work requires confidence in incomplete information. Signals may be unclear. Routes may change. Some discoveries cannot be explained until after they have already altered the mission.
               </p>
             </div>
 
